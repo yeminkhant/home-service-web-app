@@ -1,7 +1,10 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
-import NextAuthSessionProvider from "./provider";
+// DESCOPE AUTH
+// import NextAuthSessionProvider from "./provider";
+
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Outfit({ subsets: ["latin"] });
@@ -14,15 +17,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <UserProvider>
       <body className={inter.className}>
-        <NextAuthSessionProvider>
+        {/* <NextAuthSessionProvider> */}
           <div className="mx-6 md:mx-10">
             <Header />
             {children}
             <Toaster />
           </div>
-        </NextAuthSessionProvider>
+        {/* </NextAuthSessionProvider> */}
       </body>
+      </UserProvider>
     </html>
   );
 }

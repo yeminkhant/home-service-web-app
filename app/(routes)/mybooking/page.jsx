@@ -4,27 +4,32 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BookingHistoryList from "./_components/BookingHistoryList";
 import { useSession } from "next-auth/react";
 import GlobalApi from "@/app/_services/GlobalApi";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 function MyBooking() {
 
   let [bookingHistory,setBookingHistory] = useState([]);
 
-  let {data} = useSession();
+  // DESCOPE AUTH
+  // let {data} = useSession();
+
+  let {user,error,isLoading} = useUser();
+
 
   useEffect(()=>{
-    data&&getUserBookingHistory()
-  },[data])
+    user&&getUserBookingHistory()
+  },[user])
 
   // Used To Get User Booking History
   const getUserBookingHistory = () => {
-    GlobalApi.getUserBookingHistory(data.user.email).then(res => {
+    GlobalApi.getUserBookingHistory(user.email).then(res => {
       setBookingHistory(res.bookings);
-      console.log(res.bookings);
+      // console.log(res.bookings);
     })
   }
 
   const filterData = (type) => {
-    const result = bookingHistory.filter(item => type=='booked'? new Date(item.date)>new Date(): new Date(item.date)<new Date());
+    const result = bookingHistory.filter(item => type=='booked'? new Date(item.date).getDate() > (new Date().getDate()-1): new Date(item.date).getDate() < (new Date().getDate()-1));
 
     return result;
   }

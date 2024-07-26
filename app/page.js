@@ -5,6 +5,7 @@ import Hero from "./_components/Hero";
 import GlobalApi from "./_services/GlobalApi";
 import BusinessList from "./_components/BusinessList";
 
+
 export default function Home() {
 
   let [categoryList,setCategoryList] = useState([]);

@@ -10,14 +10,14 @@ function BusinessList({ businessList, title }) {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {businessList.length > 0 ? businessList.map((business, index) => (
-          <Link href={'/detail/'+business.id} key={index} className="shadow-md rounded-lg hover:shadow-primary hover:scale-110 transition-all ease-in-out relative">
+          <Link href={'/detail/'+business.id} key={index} className="shadow-md rounded-lg hover:shadow-primary hover:scale-105 transition-all ease-in-out relative">
             <div className="overflow-hidden">
               <Image
                 src={business.images[0].url}
                 alt={business.name}
                 width={500}
                 height={200}
-                className="w-[500px] h-[200px] object-fit rounded-t-lg hover:scale-125 transition-all ease-in-out"
+                className="w-[500px] h-[200px] object-fit rounded-t-lg hover:scale-110 transition-all ease-in-out"
               />
             </div>
 
