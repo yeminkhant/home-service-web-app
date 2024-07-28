@@ -25,7 +25,7 @@ function Header() {
 
   let { user, error, isLoading } = useUser();
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="p-5 shadow-sm flex justify-between">
